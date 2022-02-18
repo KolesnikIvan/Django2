@@ -1,0 +1,22 @@
+asgiref @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/asgiref-3.2.10-py3-none-any.whl
+async-timeout @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/async_timeout-2.0.1-py3-none-any.whl
+CacheControl @ file:///D:/Psim/ptk/CacheControl-0.12.10-py2.py3-none-any.whl
+certifi @ file:///D:/Psim/ptk/certifi-2021.10.8-py2.py3-none-any.whl
+charset-normalizer @ file:///D:/Psim/ptk/charset_normalizer-2.0.10-py3-none-any.whl
+Django @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/Django-3.1-py3-none-any.whl
+django-debug-toolbar @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/django_debug_toolbar-3.0-py3-none-any.whl
+idna @ file:///D:/Psim/ptk/idna-3.3-py3-none-any.whl
+mock @ file:///D:/Psim/ptk/mock-4.0.3-py3-none-any.whl
+msgpack @ file:///D:/Psim/ptk/msgpack-1.0.3-cp38-cp38-win_amd64.whl
+mysql-connector-python==8.0.26
+numpy @ file:///D:/Psim/ptk/numpy-1.22.1-cp38-cp38-win_amd64.whl
+pandas @ file:///D:/Psim/ptk/pandas-1.4.0-cp38-cp38-win_amd64.whl
+Pillow @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/Pillow-9.0.0-cp38-cp38-win_amd64.whl
+python-dateutil @ file:///D:/Psim/ptk/python_dateutil-2.8.2-py2.py3-none-any.whl
+pytz @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pytz-2021.3-py2.py3-none-any.whl
+pywin32 @ file:///D:/Psim/20211202b_y/pywin32-303-cp38-cp38-win_amd64.whl
+requests @ file:///D:/Psim/ptk/requests-2.27.1-py2.py3-none-any.whl
+six @ file:///D:/Psim/ptk/six-1.16.0-py2.py3-none-any.whl
+sqlparse @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/sqlparse-0.4.2-py3-none-any.whl
+urllib3 @ file:///D:/Psim/ptk/urllib3-1.26.8-py2.py3-none-any.whl
+xlwings==0.25.3
