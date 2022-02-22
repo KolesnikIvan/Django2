@@ -4,28 +4,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <input type='submit' value='send request'>
+        <a href="{% url 'social:begin' 'github' %}">Auth with GitHub</a>
+        <a href="{% url 'social:begin' 'google-oauth2' %}">Auth with Google</a>
     <form>
 {% endblock %}
-
-{% comment %}
-<button type='submit'>Enter</button>
-{% block content %}
-    {{ form.as_p }}
-    {% comment "" %}
-    <form>
-        Username:<input>
-        Password:<input>
-        <button type='submit'>Enter</button>
-    </form>
-
-{% endblock %}
-{% block content %}
-    <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
-        {% csrf_token %}
-        {{ login_form.as_p }}
-        <br>
-        <input class="form-control" type="submit" value="войти">
-    </form>
-
-{% endblock %}
-{% endcomment %}

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 import authapp
 from django.conf import settings
 from django.conf.urls.static import static
@@ -24,7 +24,8 @@ import mainapp.views as mainapp  # mainapp =import_module('views', 'mainapp')
 
 
 urlpatterns = [
-    # что делать с этим комментом?
+    path('', include('social_django.urls', namespace='social')),
+    re_path(r'^auth/verify/google/oauth2', include('social_django.urls')),
     path('admin/', admin.site.urls),
     path('adminapp/', include('adminapp.urls', namespace='adminapp')),
     path('', mainapp.main, name='main'),
@@ -32,28 +33,7 @@ urlpatterns = [
     path('products/', include('mainapp.urls', namespace='products')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('basket/', include('basketapp.urls', namespace='basket')),
-    # path('products/', mainapp.products, name='products'),
-    # path('products/<int:pk>', mainapp.category, name='category'), 
 ]
-# path('products/', include('mainapp.urls', namespace='products'))
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-# menu = Object()
-
-# class Template:
-#     header = ...
-#     menu = ...
-#     content = ...
-#     footer = ...
-
-# class ContactTemplate(Template):
-#     content = ...
-
-# class ContactTemplate(Template):
-#     header = [
-#         menu, 
-#         # ...
-#     ]

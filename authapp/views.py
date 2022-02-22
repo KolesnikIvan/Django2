@@ -2,8 +2,15 @@ from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import auth
 from .models import ShopUser
-from .forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
+from .forms import (
+    ShopUserLoginForm, 
+    ShopUserRegisterForm, 
+    ShopUserEditForm,
+    ShopUserProfileEditForm,
+)
+from django.db import transaction
 from . utils import send_verify_mail
+
 
 # Create your views here.
 def login(request):
@@ -57,22 +64,29 @@ def register(request):
                 })
 
 
+@transaction.atomic
 def edit(request):
     # title = 'editing'
     if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)  # PasswordChangeForm(request.user)
-        if edit_form.is_valid():
+        profile_form = ShopUserProfileEditForm(request.POST, request.FILES, instance=request.user.profile)
+        if edit_form.is_valid() and profile_form.is_valid():
             edit_form.save()
+            profile_form.save()
             return HttpResponseRedirect(reverse('main'))
     else:
         edit_form = ShopUserEditForm(instance=request.user)
+        profile_form = ShopUserProfileEditForm(instance=request.user.profile)
 
     return render(request, 
-                'authapp/register.html', 
+                # 'authapp/register.html', 
+                'authapp/edit.html', 
                 context={
                     'title': 'edit your data',
                     'form': edit_form,
-                })
+                    'profile_form': profile_form,
+                },
+            )
 
 
 def verify(request, email, activation_key):
@@ -82,6 +96,6 @@ def verify(request, email, activation_key):
     if user.activation_key == activation_key and not user.is_activation_key_expired:
         user.is_active = True
         user.save()
-        auth.login(request, user)
+        auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
     return render(request, 'authapp/verification.html')
     

@@ -3,7 +3,7 @@ import hashlib
 import os
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django import forms as djforms
-from .models import ShopUser
+from .models import ShopUser, ShopUserProfile
 
 
 class ShopUserLoginForm(AuthenticationForm):
@@ -77,3 +77,14 @@ class ShopUserEditForm(UserChangeForm):
         if city == 'Kazan':
             raise djforms.ValidationError('No way to Kazan. Stay in Saratov.')
         return city
+
+
+class ShopUserProfileEditForm(djforms.ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ('about', 'gender')  # 'tagline',
+
+    def __init__(self, *args, **kwargs):
+        super(ShopUserProfileEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
