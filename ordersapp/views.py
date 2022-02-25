@@ -84,7 +84,7 @@ class OrderCreate(OrderEditMixin, CreateView):
         context = self.get_context_data()
         orderitems = context['orderitems']
 
-        self.save_formset(form)
+        self.save_formset(form, orderitems)
         return super().form_valid(form)
 
 class OrderUpdate(OrderEditMixin, UpdateView):
