@@ -1,0 +1,40 @@
+{% load static %}
+{% comment %} from products {% endcomment %}
+{% if paginator %}
+    {% if page.has_previous %}
+        <a href="{% url 'products:paged_cat' category.id page.previous_page_number %}">Back</a>
+    {% endif %}
+    <h>Page {{ page.number }} of {{ paginator.num_pages }}</h>
+    {% if page.has_next %}
+        <a href="{% url 'products:paged_cat' category.id page.next_page_number %}">Forward</a>
+    {% endif %}
+{% endif %} 
+{% for product in products %}
+    <div class="block">
+        {% comment %} src="{% static "img/"|add:product.pic %}" {% endcomment %}
+        {% comment %} <a href="{% url 'basket:add' product.id %}"><img src="/media/{{ product.image }}" alt="">  здесь не хватало слэша в начале {% endcomment %}
+        <a href="{% url 'products:product' product.id %}"><img src="/media/{{ product.image }}" alt="">  {% comment %} здесь не хватало слэша в начале {% endcomment %}
+            <div class="text" width="270" height="270">
+                <img src="{% static "img/icon-hover.png" %}" alt="img">
+                <h4>{{ product.destination }}</h4>
+                <p>{{ product.description }}</p>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+
+{% comment %} from index 
+{% for product in products %}
+    <div class="block">
+        <!--/static/img/product-1.jpg-->
+        <a href="#"><img class="product-image" src="media/products/{{ product.image }}" alt=""> 
+            <div class="text">
+                <img src="/static/img/icon-hover.png" alt="img">
+                <h4>{{ product.name }}</h4> <!--Отличный стул-->
+                <p>{{ product.description }}</p> <!--Расположитесь комфортно.-->
+                <p>price is {{ product.price }}</p>
+            </div> 
+        </a>
+    </div>
+{% endfor %}
+{% endcomment %}

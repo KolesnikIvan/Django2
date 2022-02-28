@@ -1,0 +1,91 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block header %}
+<div class="hero-white">
+	<div class="header clearfix">
+		{% include 'mainapp/includes/inc_main_menu.html' %}
+	</div>
+</div>
+{% endblock %}
+{% debug %}
+{% block content %}
+<div class="details">
+	<div class="links clearfix">
+		<ul class="links-menu">
+			<li>
+				<a href="{% url 'products:all' %}" 
+					class="{% if request.resolver_match.view_name == 'products:all' %} active {% endif %}">all
+				</a>
+			</li>
+			{% for category in categories %}
+				<li>
+					<a href="{% url 'products:category' category.id %}" 
+						class="{% if request.resolver_match.view_name == 'products:category' and request.resolver_match.kwargs.pk == category.id %} 
+						active 
+						{% endif %}">
+						{{ category.name|title }}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<script>
+		function clickhandlre(event){
+			alert('hello');
+			console.log('hello');
+			let address = event.target.getAttribute('src')
+			document.getElementById('bigpic').setAttribute(address)
+			// хотел чтобы крупная картинка менялась бы по щелчку
+			//не понял, почему не получилось
+		}
+	</script>
+
+	{% if hot_product %}
+	<div class="details-products">
+		<div class="details-slider">
+			<div class="slider-product">
+				<img id='bigpic' src="{{ hot_product.image.url }}" width="570px">
+			</div>
+			<div class="slider-control">
+				{% for pic in pics%}
+				<div class="block">
+					<a href="#"><img src="{% static 'img/'|add:pic.adr %}" alt="" onclick="clickhandler()">
+						<div class="text"></div>
+					</a>
+				</div>
+				{% endfor%}
+			</div>
+		</div>
+		
+		<div class="description">
+			<h3 class="big-bold">{{ hot_product.name }}</h3>
+			<h3 class="red">горячее предложение</h3>
+			<p class="price">{{ hot_product.price}} <span>руб</span></p>
+			<a href="{% url 'basket:add' hot_product.id %}" class="red-button">
+				заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
+			</a>
+			<div class="description-text">
+				{{ hot_product.description|linebreaks }}
+			</div>
+		</div>
+	</div>	
+	{% endif %}	
+
+	{% if products %}
+	<div class="related">
+		<div class="title clearfix">
+			<h2>Похожие продукты</h2>
+			<a class="explore" href="#"> показать все <img src="{% static 'img/arrow.png' %}" alt=""></a>
+		</div>
+	</div>
+	<hr>
+	<div class="related-products clearfix">
+		{% include 'mainapp/includes/inc_products.html' %}
+	</div>
+	{% endif %}
+	
+</div>
+{% endblock %}
+		
