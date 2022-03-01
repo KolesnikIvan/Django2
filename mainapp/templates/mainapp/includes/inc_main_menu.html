@@ -1,0 +1,70 @@
+{% load static %}
+
+<ul class="menu">
+    
+        {% comment %} <a href="{% url 'main' %}" class="logo"></a> {% endcomment %}
+        <li><a href="/products">продукты</a></li>
+        <li><a href="/contact">контакты</a></li> 
+    
+    {% for link in menu_links %}
+        <li>
+            <a href="{% url link.url %}" 
+            {% comment %} {% if request.resolver_match.url_name == link.url %} {% endcomment %}
+            {% if request.resolver_match.view_name in link.active %}
+                class="active"
+            {% endif%}
+            >            
+            {{ link.name }}
+        </a>
+        </li>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+        <li>
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="" data-toggle="dropdown">
+                    {{ user.first_name|default:'DefaultUser' }}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                        <a href="{% url 'auth:edit' %}">
+                            profile
+                        </a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a href="{% url 'ordersapp:orders_list' %}">
+                            orders
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        {% if user.is_superuser %}
+            <li>
+                <a href="{% url 'adminapp:users' %}">
+                    Adminka
+                </a>
+            </li>        
+        {% endif %}
+        <li>
+            <a href="{% url 'basket:view' %}">The_basket
+                {% comment %} {% if user.basket.all|length %} ({{ user.basket.all|length }}) {% endif %} {% endcomment %}
+                {% comment %} {% if user.basket.count %} ({{ user.basket.count }}) {% endif %} {% endcomment %}
+                {{ user.basket.total_cost}} rub. ({{ user.basket.total_quantity }} pcs.)
+            </a>
+        </li>
+    {% endif %}    
+    {% comment "" %} enter/leave button {% endcomment %}
+    <li>
+        {% if user.is_authenticated %}
+            <a href="{% url 'auth:logout' %}">leave</a>
+        {% else %}
+            <a href="{% url 'auth:login' %}">enter</a>
+        {% endif %}
+    </li>
+</ul>
+<a href="#" class="search"></a>
+<a href="#" class="basket"></a>
+
+
