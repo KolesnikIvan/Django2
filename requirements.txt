@@ -10,6 +10,7 @@ django-debug-toolbar @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4
 idna @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/idna-2.9-py2.py3-none-any.whl
 oauthlib @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/oauthlib-3.1.0-py2.py3-none-any.whl
 Pillow @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/Pillow-9.0.0-cp38-cp38-win_amd64.whl
+psycopg2 @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/psycopg2-2.8.5-cp38-cp38-win_amd64.whl
 pycparser @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/pycparser-2.21-py2.py3-none-any.whl
 PyJWT @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/PyJWT-2.0.0-py3-none-any.whl
 python3-openid @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/python3_openid-3.2.0-py3-none-any.whl
