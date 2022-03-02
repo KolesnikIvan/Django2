@@ -24,10 +24,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'uogr3!m4bqcxj@zv)(uh@%2m(e$$wq_*fp3!9y2&-+tsgxtqhx'
 
+DJANGO_PRODUCTION = bool(os.environ.get('DJANGO_PRODUCTION', False))
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = not DJANGO_PRODUCTION
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1'] if DJANGO_PRODUCTION else []
 
 
 # Application definition
@@ -89,12 +91,42 @@ WSGI_APPLICATION = 'geekshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+# логины/пароли прячем в системные переменные
+# DJANGO_DB_NAME = os.environ.get('DJANGO_DB_NAME', 'geekshop')
+# DJANGO_DB_USER = os.environ.get('DJANGO_DB_USER', 'django')
+# DJANGO_DB_PASSWORD = os.environ.get('DJANGO_DB_PASSWORD', 'django')
+# DJANGO_DB_HOST = os.environ.get('DJANGO_DB_HOST', '127.0.0.1')
+# DJANGO_DB_PORT = os.environ.get('DJANGO_DB_PORT', 5432)
+if DJANGO_PRODUCTION:
+    DJANGO_DB_NAME = os.environ.get('DJANGO_DB_NAME')
+    DJANGO_DB_USER = os.environ.get('DJANGO_DB_USER')
+    DJANGO_DB_PASSWORD = os.environ.get('DJANGO_DB_PASSWORD')
+    DJANGO_DB_HOST = os.environ.get('DJANGO_DB_HOST')
+    DJANGO_DB_PORT = os.environ.get('DJANGO_DB_PORT')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': DJANGO_DB_NAME,
+            'USER': DJANGO_DB_USER,
+            'PASSWORD': DJANGO_DB_PASSWORD,
+            'HOST': DJANGO_DB_HOST,
+            'PORT': DJANGO_DB_PORT,
+        }
     }
-}
+    assert any([
+        DJANGO_DB_NAME,
+        DJANGO_DB_USER,
+        DJANGO_DB_PASSWORD,
+        DJANGO_DB_HOST,
+        DJANGO_DB_PORT,
+    ])
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
