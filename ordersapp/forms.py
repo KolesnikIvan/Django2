@@ -1,4 +1,3 @@
-from socket import fromshare
 from django import forms
 from ordersapp.models import Order, OrderItem
 from mainapp.models import Product

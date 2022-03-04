@@ -29,7 +29,7 @@ DJANGO_PRODUCTION = bool(os.environ.get('DJANGO_PRODUCTION', False))
 # DEBUG = True
 DEBUG = not DJANGO_PRODUCTION
 
-ALLOWED_HOSTS = ['127.0.0.1'] if DJANGO_PRODUCTION else []
+ALLOWED_HOSTS = ['127.0.0.1'] if DJANGO_PRODUCTION else ['*']
 
 
 # Application definition
@@ -102,7 +102,7 @@ if DJANGO_PRODUCTION:
     DJANGO_DB_USER = os.environ.get('DJANGO_DB_USER')
     DJANGO_DB_PASSWORD = os.environ.get('DJANGO_DB_PASSWORD')
     DJANGO_DB_HOST = os.environ.get('DJANGO_DB_HOST')
-    DJANGO_DB_PORT = os.environ.get('DJANGO_DB_PORT')
+    DJANGO_DB_PORT = int(os.environ.get('DJANGO_DB_PORT'))
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -184,12 +184,12 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
     ]
 
-with open('./credentials.json', 'r') as credentials_file:
-    credentials = json.load(credentials_file)
-    SOCIAL_AUTH_GITHUB_KEY = credentials['GITHUB_KEY']
-    SOCIAL_AUTH_GITHUB_SECRET = credentials['GITHUB_SECRET']
-    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = credentials['GOOGLE_OAUTH2_KEY']
-    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = credentials['GOOGLE_OAUTH2_SECRET']
+#with open('./credentials.json', 'r') as credentials_file:
+#    credentials = json.load(credentials_file)
+#    SOCIAL_AUTH_GITHUB_KEY = credentials['GITHUB_KEY']
+#    SOCIAL_AUTH_GITHUB_SECRET = credentials['GITHUB_SECRET']
+#    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = credentials['GOOGLE_OAUTH2_KEY']
+#    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = credentials['GOOGLE_OAUTH2_SECRET']
     # SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [...]
 
 # Email

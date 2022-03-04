@@ -1,0 +1,6 @@
+export DJANGO_PRODUCTION=1
+export DJANGO_DB_NAME=geekshop
+export DJANGO_DB_USER=django
+export DJANGO_DB_PASSWORD=master
+export DJANGO_DB_HOST=127.0.0.1
+export DJANGO_DB_PORT=5432
