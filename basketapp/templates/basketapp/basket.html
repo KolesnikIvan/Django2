@@ -1,0 +1,32 @@
+{% extends 'basketapp/base.html' %}
+{% load static %}
+
+{% block js %}
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'js/basket_scripts.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  {% comment %} {{ user.basket.all }} {% endcomment %}
+  <div class="basket_list">
+  {% comment %} {% for item in basket_items %} {% endcomment %}
+  {% comment %} {% for item in user.basket.all %} {% endcomment %}
+  {% comment %} {% include 'basketapp/includes/inc_basket_list.html' %} {% endcomment %}
+  {% comment %} {% with basket_items = user.basket.all %}   {% endcomment %}
+  {% include 'basketapp/includes/inc_basket_list.html' %}
+  {% comment %} {% endwith %} {% endcomment %}
+  </div>
+
+  <button class="btn btn-round">
+    <a href="{% url 'main' %}">на главную</a>
+  </button>
+{% endblock %}
+
+
+{% comment %} {% for item in basket %}
+    {{ item }} <a href="{% url 'basket:remove' item.id %}">Delete</a> <a href="{% url 'basket:add' item.id %}">Add</a>
+    <br/>
+{% endfor %}
+<br/>
+There are {{ basket|length }} products in the basket. {% endcomment %}
+{% comment %}{{ basket }}{% endcomment %}
