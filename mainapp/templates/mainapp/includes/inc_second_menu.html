@@ -1,0 +1,15 @@
+<div class="links clearfix">
+    <ul class="links-menu">
+        <!--<li><a href="#" class="active">все</a></li>
+        тут хотел сделать с большой буквы; видимо, шрифты мешают-->
+        {% comment %}{% for btn in ribbon_menu %} {% endcomment %}
+        <li><a href="#" class="active">all</a></li>
+        {% for btn in categories %}
+        <li><a href="#">{{ btn|title }}</a></li>
+        <!--<li><a href="#">{{ btn|capfirst }}</a></li>-->
+        {% endfor %}
+        {% comment %}<li><a href="#">офис</a></li>
+        <li><a href="#">модерн</a></li>
+        <li><a href="#">классика</a></li> {% endcomment %}
+    </ul>
+</div>
