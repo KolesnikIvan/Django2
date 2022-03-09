@@ -152,7 +152,7 @@ if DJANGO_PRODUCTION:
             'PORT': DJANGO_DB_PORT,
         }
     }
-    assert any([
+    assert all([
         DJANGO_DB_NAME,
         DJANGO_DB_USER,
         DJANGO_DB_PASSWORD,
