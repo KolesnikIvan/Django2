@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import json
 import debug_toolbar
+import mimetypes
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'template_profiler_panel',
 
     'social_django',
 
@@ -70,11 +72,17 @@ MIDDLEWARE = [
 ]
 
 if DEBUG:
+    # import pdb; pdb.set_trace()
+    # https://django.fun/qa/30455/
+    # https://github.com/jazzband/django-debug-toolbar/issues/1336
+    mimetypes.add_type('applcation/javascript', '.js', True)
+    mimetypes.add_type('text/plain', '.txt', True)
     def show_toolbar(request):
         return True
     
     DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': show_toolbar,
+    # 'INTERCEPT_REDIRECTS': False,
     }
     
     DEBUG_TOOLBAR_PANELS = [
@@ -93,6 +101,7 @@ if DEBUG:
         'debug_toolbar.panels.profiling.ProfilingPanel',
         'template_profiler_panel.panels.template.TemplateProfilerPanel',
     ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 ROOT_URLCONF = 'geekshop.urls'
 
