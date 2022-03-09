@@ -1,12 +1,12 @@
-asgiref==3.3.4
+asgiref==3.4.1
 async-timeout @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/async_timeout-2.0.1-py3-none-any.whl
 certifi @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/certifi-2020.4.5-py2.py3-none-any.whl
 cffi @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/cffi-1.15.0-cp38-cp38-win_amd64.whl
 chardet @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/chardet-3.0.4-py2.py3-none-any.whl
 cryptography @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/cryptography-2.9-cp38-cp38-win_amd64.whl
 defusedxml @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/defusedxml-0.7.1-py2.py3-none-any.whl
-Django==3.2
-django-debug-toolbar @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/django_debug_toolbar-3.2.4-py3-none-any.whl
+Django==2.2.23
+django-debug-toolbar==3.2.2
 django-debug-toolbar-template-profiler==2.0.2
 django-lrucache-backend @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/django_lrucache_backend-4.0.0-py3-none-any.whl
 django-utils-six @ file:///C:/Users/kolesnikiy/PycharmProjects/gb/dj/pckgs_4_dj/django_utils_six-2.0-py3-none-any.whl
