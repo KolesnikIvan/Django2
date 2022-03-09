@@ -73,7 +73,10 @@ MIDDLEWARE = [
 
 if DEBUG:
     # import pdb; pdb.set_trace()
-    # mimetypes.add_type('applcation/javascript', '.js', True)
+    # https://django.fun/qa/30455/
+    # https://github.com/jazzband/django-debug-toolbar/issues/1336
+    mimetypes.add_type('applcation/javascript', '.js', True)
+    mimetypes.add_type('text/plain', '.txt', True)
     def show_toolbar(request):
         return True
     
@@ -149,7 +152,7 @@ if DJANGO_PRODUCTION:
             'PORT': DJANGO_DB_PORT,
         }
     }
-    assert any([
+    assert all([
         DJANGO_DB_NAME,
         DJANGO_DB_USER,
         DJANGO_DB_PASSWORD,
