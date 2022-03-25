@@ -1,0 +1,10 @@
+{% extends 'authapp\base.html' %}
+{% block content %}
+    <form method='POST' url="{% url 'auth:login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' value='send request'>
+        <a href="{% url 'social:begin' 'github' %}">Auth with GitHub</a>
+        <a href="{% url 'social:begin' 'google-oauth2' %}">Auth with Google</a>
+    <form>
+{% endblock %}
