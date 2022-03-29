@@ -1,0 +1,25 @@
+{% load static %}
+
+{% if paginator %}
+    {% if page.has_previous %}
+        <a href="{% url 'products:paged_cat' category.id page.previous_page_number %}">Back</a>
+    {% endif %}
+    <h>Page {{ page.number }} of {{ paginator.num_pages }}</h>
+    {% if page.has_next %}
+        <a href="{% url 'products:paged_cat' category.id page.next_page_number %}">Forward</a>
+    {% endif %}
+{% endif %} 
+{% for product in products %}
+    <div class="block">
+        {% with product_category=product.category %}
+         <a href="{% url 'products:product' product.id %}"><img src="/media/{{ product.image }}" alt="">  {% comment %} здесь не хватало слэша в начале {% endcomment %}
+            <div class="text" width="270" height="270">
+                <img src="{% static "img/icon-hover.png" %}" alt="img">
+                <h4>{{ product.destination }}</h4>
+                <p>{{ product.description }}</p>
+                <h5>{{ product_category }}</h5>
+            </div>
+        </a>
+        {% endwith %}
+    </div>
+{% endfor %}
