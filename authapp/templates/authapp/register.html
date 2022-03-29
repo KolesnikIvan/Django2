@@ -1,0 +1,12 @@
+{% extends 'authapp\base.html' %}
+{% block content %}
+{% if user.avatar %}
+    <img src="{{ user.avatar.url }}">
+{% endif %}
+<form method='POST' url="{% url 'auth:register' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% comment %} {{ password_form.as_p }} {% endcomment %}
+    <input type='submit' value='to {{ title }}'>
+<form>
+{% endblock %}
